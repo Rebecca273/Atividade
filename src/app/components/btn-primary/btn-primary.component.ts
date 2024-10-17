@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input, Output, EventEmitter, } from '@angular/core';
+ import { CommonModule } from '@angular/common';
+ import { Component, Input, Output, EventEmitter, } from '@angular/core';
 
-type BtnVariants = "primary" | "secundary";
+ type BtnVariants = "primary" | "secundary";
 
-@Component({
+ @Component({
   selector: 'btn-primary',
   standalone: true,
   imports: [
@@ -11,8 +11,8 @@ type BtnVariants = "primary" | "secundary";
   ],
   templateUrl: './btn-primary.component.html',
   styleUrl: './btn-primary.component.scss'
-})
-export class BtnPrimaryComponent {
+ })
+ export class BtnPrimaryComponent {
  
   @Input("btn-text") btnText: string="";
   @Input()disabled: boolean=false;
@@ -26,4 +26,4 @@ export class BtnPrimaryComponent {
 
   }
 
-}
+ } 

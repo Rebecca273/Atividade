@@ -58,13 +58,19 @@ p{
   
    b{
     background: -webkit-linear-gradient(180deg, $ligth-primary-color, $secundary-color);
-   -webkit-background-clip : texto;
+   -webkit-background-clip : text;
    -webkit-text-fill-color : transparente;
    font-style:normal;
    }
 
 }
    
+}
+
+.cta-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (min-width:1080x){
