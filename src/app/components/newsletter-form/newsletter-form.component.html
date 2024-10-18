@@ -5,10 +5,10 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat totam rem vitae laborum assumenda accusantium magnam, sed, ipsam magni ab, ea tempora laudantium porro odio eum? Consequuntur quas vitae pariatur.</p>
     </div>            
 <form [formGroup]="newsletterForm">
-<label for="email">Name</label>
+<label for="name">Name</label>
 <input id="name" formControlName="name"/>
 <label for="email">Email</label>
 <input id="email"  formControlName="email"/>/>
-<btn-primary btn-text="se inscreva" variant="secundary" (submit)="Onsubmit()"></btn-primary>
+<btn-primary btn-text="se inscreva" variant="secundary" (submit)="onSubmit()"[disabled]="!newsletterForm.valid" [loading]="loading()"></btn-primary>
 </form>
-</section>
+</section>                                                                                                                              

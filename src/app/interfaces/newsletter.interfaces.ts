@@ -1,0 +1,6 @@
+interface NewsletterResponse{
+message:string
+
+
+
+}
