@@ -1,43 +1,68 @@
 import { Component, signal } from '@angular/core';
-import { BtnPrimaryComponent } from "../btn-primary/btn-primary.component";
-import { FormControl, FormGroup, ReactiveFormsModule, RequiredValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NewsletterService } from '../../services/newsletter.service';
+import { BtnPrimaryComponent } from '../btn-primary/btn-primary.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'newsletter-form',
   standalone: true,
-  imports: [BtnPrimaryComponent,ReactiveFormsModule],
-  providers:[NewsletterService],
+  imports: [BtnPrimaryComponent, ReactiveFormsModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [NewsletterService],
   templateUrl: './newsletter-form.component.html',
-  styleUrl: './newsletter-form.component.scss'
+  styleUrls: ['./newsletter-form.component.scss']
 })
 export class NewsletterFormComponent {
-  newsletterForm!:FormGroup;
+  newsletterForm!: FormGroup;
   loading = signal(false);
 
-  constructor(private service: NewsletterService) {
-    this.newsletterForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+  constructor(private service: NewsletterService, private fb: FormBuilder) {
+    this.newsletterForm = this.fb.group({
+      codigoInterno: ['', Validators.required],
+      nome: ['', Validators.required],
+      observacao: [''],
+      dataRegistro: ['', Validators.required],
+      dataValidade: ['', Validators.required],
+      endereco: ['', Validators.required],
+      cep: ['', Validators.required],
+      cidade: ['', Validators.required],
+      uf: ['', Validators.required],
+      pais: ['', Validators.required],
+      dddTelefone: ['', [Validators.required, Validators.pattern('^[0-9]{2,3}$')]],
+      numeroTelefone: ['', [Validators.required, Validators.pattern('^[0-9]{8,15}$')]],
+      email: ['', [Validators.required, Validators.email]],
+      website: ['', [Validators.pattern('https?://.+')]],
     });
   }
 
-  onSubmit(){
+  onSubmit() {
     this.loading.set(true);
-    if(this.newsletterForm.valid){
-      this.service.sendData(this.newsletterForm.value.name, this.newsletterForm.value.email).subscribe({
-        next: () => {
+
+    if (this.newsletterForm.valid) {
+      const formData = this.newsletterForm.value;
+      console.log('Dados a serem enviados:', formData); // Log dos dados
+
+      this.service.sendData(formData).subscribe({
+        next: (response) => {
+          console.log('Resposta recebida:', response); // Log da resposta
           this.newsletterForm.reset();
           this.loading.set(false);
+          console.log('Dados enviados com sucesso!');
+          alert('Dados enviados com sucesso!');
         },
-        error: () => this.loading.set(false)
-      })
+        error: (err) => {
+          this.loading.set(false);
+          console.error('Erro ao enviar dados:', err);
+          console.error('Erro Status:', err.status);
+          console.error('Erro Status Text:', err.statusText);
+          alert('Erro ao enviar dados. Por favor, tente novamente.'); // Notificação ao usuário
+        }
+      });
+    } else {
+      this.loading.set(false);
+      console.log('Formulário inválido!');
+      alert('Por favor, preencha todos os campos obrigatórios.');
     }
   }
 }
-
-
-
-
-
-

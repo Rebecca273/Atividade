@@ -1,14 +1,53 @@
-<section class="form-section">                   
+<section class="form-section">
     <div class="text">
-
-        <h3>Fique por dentro de Tendências</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat totam rem vitae laborum assumenda accusantium magnam, sed, ipsam magni ab, ea tempora laudantium porro odio eum? Consequuntur quas vitae pariatur.</p>
+        <h2>Formulário de Cadastro</h2>
     </div>            
-<form [formGroup]="newsletterForm">
-<label for="name">Name</label>
-<input id="name" formControlName="name"/>
-<label for="email">Email</label>
-<input id="email"  formControlName="email"/>/>
-<btn-primary btn-text="se inscreva" variant="secundary" (submit)="onSubmit()"[disabled]="!newsletterForm.valid" [loading]="loading()"></btn-primary>
-</form>
-</section>                                                                                                                              
+    <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()">
+        <label for="codigoInterno">Código Interno</label>
+        <input id="codigoInterno" formControlName="codigoInterno" />
+
+        <label for="nome">Nome</label>
+        <input id="nome" formControlName="nome" />
+
+
+        <label for="dataRegistro">Data de Registro (dd/mm/yyyy)</label>
+        <input type="date" id="dataRegistro" formControlName="dataRegistro" />
+
+        <label for="dataValidade">Data de Validade (dd/mm/yyyy)</label>
+        <input type="date" id="dataValidade" formControlName="dataValidade" />
+
+        <label for="endereco">Endereço</label>
+        <input id="endereco" formControlName="endereco" />
+
+        <label for="cep">CEP</label>
+        <input id="cep" formControlName="cep" />
+
+        <label for="cidade">Cidade</label>
+        <input id="cidade" formControlName="cidade" />
+
+        <label for="uf">UF</label>
+        <input id="uf" formControlName="uf" />
+
+        <label for="pais">País</label>
+        <input id="pais" formControlName="pais" />
+
+        <label for="dddTelefone">DDD Telefone</label>
+        <input id="dddTelefone" formControlName="dddTelefone" />
+
+        <label for="numeroTelefone">Número Telefone</label>
+        <input id="numeroTelefone" formControlName="numeroTelefone" />
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" formControlName="email" />
+
+        <label for="website">Website</label>
+        <input id="website" formControlName="website" />
+
+        <label for="observacao">Observação</label>
+        <textarea id="observacao" formControlName="observacao"></textarea>
+
+        <btn-primary btn-text="se inscreva" variant="secundary" (submit)="onSubmit()"[disabled]="!newsletterForm.valid" [loading]="loading()"></btn-primary>
+
+       
+    </form>
+</section>

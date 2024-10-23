@@ -66,6 +66,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "options": {
+             "proxyConfig": "proxy.conf.json"  
+                         },
             "production": {
               "buildTarget": "lading-page:build:production"
             },
@@ -107,3 +110,6 @@
     "analytics": "d5ea56c6-72ee-4817-a37b-8e2293c59054"
   }
 }
+
+
+

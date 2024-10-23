@@ -1,0 +1,9 @@
+{
+    "/api": {
+      "target": "https://app.omie.com.br",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  
